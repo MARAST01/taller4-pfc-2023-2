@@ -13,6 +13,7 @@ object Taller4{
 
   def saludo() = "Taller 4 2023-II"
   type Matriz = Vector[Vector[Int]]
+
   def prodPunto(v1:Vector[Int],v2:Vector[Int]):Int = {
     (v1 zip v2).map({case (i,j)=>i*j}).sum
   }
