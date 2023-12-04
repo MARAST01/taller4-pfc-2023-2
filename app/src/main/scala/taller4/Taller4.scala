@@ -18,7 +18,6 @@ object Taller4{
 
   type Matriz = Vector[Vector[Int]]
   def matrizAlAzar(long: Int, vals: Int): Matriz =  {
-
     val random = new Random()
     val v = Vector.fill(long, long)(random.nextInt(vals))
     v
@@ -143,12 +142,6 @@ object Taller4{
     }
   }
 
-  def sumarMatrices(m1: Matriz, m2: Matriz): Matriz = {
-    Vector.tabulate(m1.size, m1.head.size) { (i, j) =>
-      m1(i)(j) + m2(i)(j)
-    }
-  }
-
   def restaMatriz(m1:Matriz, m2:Matriz):Matriz = {
     val n = m1.length
     Vector.tabulate(n,n){(i,j)=>
@@ -257,18 +250,36 @@ object Taller4{
       Vector(29, 30, 31, 32)
     )
 
-
-
-
+    val matriz9: Matriz = Vector(
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1)
+    )
+    val matriz10: Matriz = Vector(
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0),
+      Vector(0, 1, 0, 1, 0, 1, 0, 1),
+      Vector(1, 0, 1, 0, 1, 0, 1, 0)
+    )
+    // Resultado de multiplicar las matrices 9 y 10
     println("\nResultado (Multiplicación de Matrices - Secuencial):")
-    mulMatriz(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
+    mulMatriz(matriz9, matriz10).foreach(row => println(row.mkString(" ")))
 
 
 
     // Mostrar el resultado de la multiplicación de matrices
 
-    println("\nResultado (Multiplicación de Matrices - paralela):")
-    multMatrizPar(matriz1, matriz2 ).foreach(row => println(row.mkString(" ")))
+    //println("\nResultado (Multiplicación de Matrices - paralela):")
+    //multMatrizPar(matriz3, matriz4 ).foreach(row => println(row.mkString(" ")))
 
 
     /*
@@ -296,26 +307,27 @@ object Taller4{
     multMatrizRecPar(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
     */
 
-    /*
-    println("\nResultado (Multiplicación de Matrices - strassen secuencial):")
-    multStrassen(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
 
-    /*
-    println("\nResultado (Multiplicación de Matrices - strassen paralela):")
-    multStrassenPar(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
+    //println("\nResultado (Multiplicación de Matrices - strassen secuencial):")
+    //multStrassen(matriz5, matriz6).foreach(row => println(row.mkString(" ")))
+
+
+
+    //println("\nResultado (Multiplicación de Matrices - strassen paralela):")
+    //multStrassenPar(matriz5, matriz6).foreach(row => println(row.mkString(" ")))
+
     //comparar algoritmos
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
-    println(compararAlgoritmos(mulMatriz,multMatrizPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
 
+    /*
     for {
       i <- 1 to 8
       m1 = matrizAlAzar(math.pow(2, i).toInt, 2)
       m2 = matrizAlAzar(math.pow(2, i).toInt, 2)
     } yield println((compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2), math.pow(2, i).toInt))
-
+    */
   }
  }
 //lloremos juntos y juntes :( con el taller y el proyecto :(
