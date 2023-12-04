@@ -259,17 +259,17 @@ object Taller4{
 
 
 
-    /*
+
     println("\nResultado (Multiplicación de Matrices - Secuencial):")
     mulMatriz(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
 
-    /*
+
+
     // Mostrar el resultado de la multiplicación de matrices
 
     println("\nResultado (Multiplicación de Matrices - paralela):")
     multMatrizPar(matriz1, matriz2 ).foreach(row => println(row.mkString(" ")))
-    */
+
 
     /*
     val submatrizA11 = subMatriz(matriz1, 0, 0, matriz1.length / 2)
@@ -308,13 +308,14 @@ object Taller4{
     //comparar algoritmos
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
-    //println(compararAlgoritmos(mulMatriz,multMatrizzPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
-    /*
+    println(compararAlgoritmos(mulMatriz,multMatrizPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
+
     for {
-      i <- 1 to 10
+      i <- 1 to 8
       m1 = matrizAlAzar(math.pow(2, i).toInt, 2)
       m2 = matrizAlAzar(math.pow(2, i).toInt, 2)
-    } yield (compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2), math.pow(2, i).toInt)
-      */
+    } yield println((compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2), math.pow(2, i).toInt))
+
   }
  }
+//lloremos juntos :( con el taller y el proyecto :(
