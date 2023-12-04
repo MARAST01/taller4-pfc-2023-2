@@ -318,4 +318,4 @@ object Taller4{
 
   }
  }
-//lloremos juntos :( con el taller y el proyecto :(
+//lloremos juntos y juntes :( con el taller y el proyecto :(

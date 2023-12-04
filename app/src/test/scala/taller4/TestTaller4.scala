@@ -51,7 +51,7 @@ class TestTaller4 extends AnyFunSuite{
         Vector(7, 8, 5, 6),
         Vector(6, 7, 8, 5)
         // vaya duermanse
-        // usted si jajajaj
+        // usted si jajajaja
     )
     val matrizresultado3_4: Matriz = Vector(
         Vector(203, 241, 159, 193),
