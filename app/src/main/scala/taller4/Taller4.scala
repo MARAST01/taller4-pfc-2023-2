@@ -13,7 +13,6 @@ import scala.util.Random
 
 
 
-
 object Taller4{
 
   type Matriz = Vector[Vector[Int]]
@@ -37,8 +36,23 @@ object Taller4{
     (tiempo1, tiempo2,aceleracion)
   }
   def prodPunto(v1:Vector[Int],v2:Vector[Int]):Int = {
-    (v1 zip v2).map({case (i,j)=>i*j}).sum
+    (v1 zip v2).map({ case (i, j) => i * j }).sum
   }
+
+  //producto punto parallelo
+  /*
+  def prodPunto(v1:Vector[Int],v2:Vector[Int]):Int = {
+    val (v1a, v1b) = v1.splitAt(v1.length / 2)
+    val (v2a, v2b) = v2.splitAt(v2.length / 2)
+
+    val s1 = task {v1a.zip(v2a).map({case (i,j)=>i*j}).sum}
+    val s2 = task {v1b.zip(v2b).map({case (i,j)=>i*j}).sum}
+    s1.join + s2.join
+  }
+  */
+  //def prodPuntoParvector(v1: ParVector[Int], v2: ParVector[Int]): Int = {
+  //  (v1 zip v2).map({ case (i, j) => (i * j) }).sum
+  //}
   def transpuesta (m:Matriz):Matriz = {
     val l=m.length
     Vector.tabulate(l,l)((i,j)=>m(j)(i))
@@ -292,8 +306,9 @@ object Taller4{
     //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz64_1,matriz64))
     //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz128_1,matriz128))
     //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz256_1,matriz256))
-    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz512_1,matriz512))
+    println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz512_1,matriz512))
     //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz1024_1,matriz1024))
+
 
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matri2_1,matriz2))
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz4_1,matriz4))
@@ -307,6 +322,7 @@ object Taller4{
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz512_1,matriz512))
     //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz1024_1,matriz1024))
 
+
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matri2_1,matriz2))
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz4_1,matriz4))
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz8_1,matriz8))
@@ -315,7 +331,7 @@ object Taller4{
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz64_1,matriz64))
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz128_1,matriz128))
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz256_1,matriz256))
-    println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz512_1,matriz512))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz512_1,matriz512))
     //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz1024_1,matriz1024))
 
 
