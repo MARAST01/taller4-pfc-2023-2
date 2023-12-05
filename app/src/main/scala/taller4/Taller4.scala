@@ -200,24 +200,24 @@ object Taller4{
     } else {
       val m = n / 2
 
-      val a11 = task {subMatriz(m1, 0, 0, m)}
-      val a12 = task {subMatriz(m1, 0, m, m)}
-      val a21 = task {subMatriz(m1, m, 0, m)}
-      val a22 = task {subMatriz(m1, m, m, m)}
+      val a11 =subMatriz(m1, 0, 0, m)
+      val a12 = subMatriz(m1, 0, m, m)
+      val a21 = subMatriz(m1, m, 0, m)
+      val a22 = subMatriz(m1, m, m, m)
 
-      val b11 = task {subMatriz(m2, 0, 0, m)}
-      val b12 = task {subMatriz(m2, 0, m, m)}
-      val b21 = task {subMatriz(m2, m, 0, m)}
-      val b22 = task {subMatriz(m2, m, m, m)}
+      val b11 = subMatriz(m2, 0, 0, m)
+      val b12 = subMatriz(m2, 0, m, m)
+      val b21 = subMatriz(m2, m, 0, m)
+      val b22 = subMatriz(m2, m, m, m)
 
 
-      val p1 = task {multStrassenPar(sumMatriz(a11.join, a22.join), sumMatriz(b11.join, b22.join))}
-      val p2 = task {multStrassenPar(sumMatriz(a21.join, a22.join), b11.join)}
-      val p3 = task {multStrassenPar(a11.join, restaMatriz(b12.join, b22.join))}
-      val p4 = task {multStrassenPar(a22.join, restaMatriz(b21.join, b11.join))}
-      val p5 = task {multStrassenPar(sumMatriz(a11.join, a12.join), b22.join)}
-      val p6 = task {multStrassenPar(restaMatriz(a21.join, a11.join), sumMatriz(b11.join, b12.join))}
-      val p7 = task {multStrassenPar(restaMatriz(a12.join, a22.join), sumMatriz(b21.join, b22.join))}
+      val p1 = task {multStrassenPar(sumMatriz(a11, a22), sumMatriz(b11, b22))}
+      val p2 = task {multStrassenPar(sumMatriz(a21, a22), b11)}
+      val p3 = task {multStrassenPar(a11, restaMatriz(b12, b22))}
+      val p4 = task {multStrassenPar(a22, restaMatriz(b21, b11))}
+      val p5 = task {multStrassenPar(sumMatriz(a11, a12), b22)}
+      val p6 = task {multStrassenPar(restaMatriz(a21, a11), sumMatriz(b11, b12))}
+      val p7 = task {multStrassenPar(restaMatriz(a12, a22), sumMatriz(b21, b22))}
 
       val c11 = restaMatriz(sumMatriz(sumMatriz(p1.join, p4.join), p7.join), p5.join)
       val c12 = sumMatriz(p3.join, p5.join)
@@ -233,94 +233,96 @@ object Taller4{
         else if (i >= m && j < m) c21(i - m)(j)
         else c22(i - m)(j - m)
       }
-    }}
+    }
+  }
   def main(args: Array[String]): Unit = {
 
-    val matriz1: Matriz = Vector(
-      Vector(1, 2, 3, 4),
-      Vector(5, 6, 7, 8),
-      Vector(9, 10, 11, 12),
-      Vector(13, 14, 15, 16)
-    )
+    //Matrices desde 2x2 hasta 1024x1024
+    //matrices 2x2
+    val matri2_1: Matriz = matrizAlAzar(2, 8)
+    val matriz2: Matriz = matrizAlAzar(2, 8)
 
-    val matriz2: Matriz = Vector(
-      Vector(17, 18, 19, 20),
-      Vector(21, 22, 23, 24),
-      Vector(25, 26, 27, 28),
-      Vector(29, 30, 31, 32)
-    )
+    //matrices 4x4
+    val matriz4_1: Matriz = matrizAlAzar(4, 8)
+    val matriz4: Matriz = matrizAlAzar(4, 8)
 
-    val matriz9: Matriz = Vector(
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1)
-    )
-    val matriz10: Matriz = Vector(
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0),
-      Vector(0, 1, 0, 1, 0, 1, 0, 1),
-      Vector(1, 0, 1, 0, 1, 0, 1, 0)
-    )
-    // Resultado de multiplicar las matrices 9 y 10
-    println("\nResultado (Multiplicación de Matrices - Secuencial):")
-    mulMatriz(matriz9, matriz10).foreach(row => println(row.mkString(" ")))
+    //matrices 8x8
+    val matriz8_1: Matriz = matrizAlAzar(8, 8)
+    val matriz8: Matriz = matrizAlAzar(8, 8)
 
+    //matrices 16x16
+    val matriz16_1: Matriz = matrizAlAzar(16, 8)
+    val matriz16: Matriz = matrizAlAzar(16, 8)
 
+    //matrices 32x32
+    val matriz32_1: Matriz = matrizAlAzar(32, 8)
+    val matriz32: Matriz = matrizAlAzar(32, 8)
 
-    // Mostrar el resultado de la multiplicación de matrices
+    //matrices 64x64
+    val matriz64_1: Matriz = matrizAlAzar(64, 8)
+    val matriz64: Matriz = matrizAlAzar(64, 8)
 
-    //println("\nResultado (Multiplicación de Matrices - paralela):")
-    //multMatrizPar(matriz3, matriz4 ).foreach(row => println(row.mkString(" ")))
+    //matrices 128x128
+    val matriz128_1: Matriz = matrizAlAzar(128, 8)
+    val matriz128: Matriz = matrizAlAzar(128, 8)
 
+    //matrices 256x256
+    val matriz256_1: Matriz = matrizAlAzar(256, 8)
+    val matriz256: Matriz = matrizAlAzar(256, 8)
 
-    /*
-    val submatrizA11 = subMatriz(matriz1, 0, 0, matriz1.length / 2)
-    val submatrizA22 = subMatriz(matriz1, (matriz1.length / 2)-1, (matriz1.length / 2)-1, 3)
+    //matrices 512x512
+    val matriz512_1: Matriz = matrizAlAzar(512, 8)
+    val matriz512: Matriz = matrizAlAzar(512, 8)
 
-    println("Submatriz A11:")
-    submatrizA11.foreach(row => println(row.mkString(" ")))
-
-    println("\nSubmatriz A22:")
-    submatrizA22.foreach(row => println(row.mkString(" ")))
-    */
-    /*
-    println("\nResultado (SUMA de Matrices - secuencial):")
-    sumMatriz(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
-
-    /*
-    println("\nResultado (Multiplicación de Matrices - recursiva secuencial):")
-    multMatrizRec(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
-
-    /*
-    println("\nResultado (Multiplicación de Matrices - recursiva paralela):")
-    multMatrizRecPar(matriz1, matriz2).foreach(row => println(row.mkString(" ")))
-    */
-
-
-    //println("\nResultado (Multiplicación de Matrices - strassen secuencial):")
-    //multStrassen(matriz5, matriz6).foreach(row => println(row.mkString(" ")))
+    //matrices 1024x1024
+    val matriz1024_1: Matriz = matrizAlAzar(1024, 8)
+    val matriz1024: Matriz = matrizAlAzar(1024, 8)
 
 
 
-    //println("\nResultado (Multiplicación de Matrices - strassen paralela):")
-    //multStrassenPar(matriz5, matriz6).foreach(row => println(row.mkString(" ")))
+
+
 
     //comparar algoritmos
-    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
-    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matri2_1,matriz2))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz4_1,matriz4))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz8_1,matriz8))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz16_1,matriz16))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz32_1,matriz32))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz64_1,matriz64))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz128_1,matriz128))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz256_1,matriz256))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz512_1,matriz512))
+    //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matriz1024_1,matriz1024))
+
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matri2_1,matriz2))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz4_1,matriz4))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz8_1,matriz8))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz16_1,matriz16))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz32_1,matriz32))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz64_1,matriz64))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz128_1,matriz128))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz256_1,matriz256))
+    //murio la pc
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz512_1,matriz512))
+    //println(compararAlgoritmos(multMatrizRec,multMatrizRecPar)(matriz1024_1,matriz1024))
+
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matri2_1,matriz2))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz4_1,matriz4))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz8_1,matriz8))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz16_1,matriz16))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz32_1,matriz32))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz64_1,matriz64))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz128_1,matriz128))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz256_1,matriz256))
+    println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz512_1,matriz512))
+    //println(compararAlgoritmos(multStrassen,multStrassenPar)(matriz1024_1,matriz1024))
+
+
     //println(compararAlgoritmos(mulMatriz,multMatrizPar)(matrizAlAzar(32,8),matrizAlAzar(32,8)))
 
+
+    //este algoritmo exploto
     /*
     for {
       i <- 1 to 8
